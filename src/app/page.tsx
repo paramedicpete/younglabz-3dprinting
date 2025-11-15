@@ -1,65 +1,111 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { products } from '@/lib/products';
+import ProductCard from '@/components/ProductCard';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Home() {
+  const featuredProducts = products.slice(0, 6);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="container mx-auto px-4">
+      {/* Hero Section */}
+      <section className="py-20 text-center">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <Sparkles className="text-neon-cyan" size={32} />
+            <h1 className="text-5xl md:text-7xl font-bold">
+              <span className="text-foreground">Welcome to </span>
+              <span className="text-neon-cyan">Young </span>
+              <span className="text-neon-pink">LABZ</span>
+            </h1>
+            <Sparkles className="text-neon-pink" size={32} />
+          </div>
+          
+          <p className="text-xl md:text-2xl text-gray-400 mb-8">
+            Discover premium 3D printed products crafted with precision and care
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/products"
+              className="px-8 py-4 bg-neon-cyan text-background font-semibold rounded-lg hover:bg-neon-pink hover:shadow-lg hover:shadow-neon-pink/50 transition-all duration-300 flex items-center justify-center gap-2"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Shop Now
+              <ArrowRight size={20} />
+            </Link>
+            <Link
+              href="/about"
+              className="px-8 py-4 border-2 border-neon-purple text-neon-purple font-semibold rounded-lg hover:bg-neon-purple hover:text-background transition-all duration-300"
             >
-              Learning
-            </a>{" "}
-            center.
+              Learn More
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-16">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-foreground mb-4">
+            Featured <span className="text-neon-pink">Products</span>
+          </h2>
+          <p className="text-gray-400 text-lg">
+            Check out our most popular 3D printed items
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {featuredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
-      </main>
+
+        <div className="text-center mt-12">
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-neon-cyan text-neon-cyan font-semibold rounded-lg hover:bg-neon-cyan hover:text-background transition-all duration-300"
+          >
+            View All Products
+            <ArrowRight size={20} />
+          </Link>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="bg-gray-medium p-6 rounded-lg border border-gray-light hover:border-neon-cyan transition-colors">
+            <div className="w-12 h-12 bg-neon-cyan/20 rounded-lg flex items-center justify-center mb-4">
+              <span className="text-2xl">🎨</span>
+            </div>
+            <h3 className="text-xl font-semibold text-foreground mb-2">Custom Designs</h3>
+            <p className="text-gray-400">
+              Unique 3D printed products designed and crafted with attention to detail
+            </p>
+          </div>
+
+          <div className="bg-gray-medium p-6 rounded-lg border border-gray-light hover:border-neon-pink transition-colors">
+            <div className="w-12 h-12 bg-neon-pink/20 rounded-lg flex items-center justify-center mb-4">
+              <span className="text-2xl">⚡</span>
+            </div>
+            <h3 className="text-xl font-semibold text-foreground mb-2">Fast Shipping</h3>
+            <p className="text-gray-400">
+              Quick processing and shipping to get your products to you fast
+            </p>
+          </div>
+
+          <div className="bg-gray-medium p-6 rounded-lg border border-gray-light hover:border-neon-purple transition-colors">
+            <div className="w-12 h-12 bg-neon-purple/20 rounded-lg flex items-center justify-center mb-4">
+              <span className="text-2xl">💎</span>
+            </div>
+            <h3 className="text-xl font-semibold text-foreground mb-2">Premium Quality</h3>
+            <p className="text-gray-400">
+              High-quality materials and professional finishing for lasting products
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
+

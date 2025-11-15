@@ -1,36 +1,187 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 3DPrintShop - E-commerce Website
 
-## Getting Started
+A sleek, modern e-commerce website for selling 3D printed products, built with **Next.js 15**, **TypeScript**, and **Tailwind CSS**. Features a stunning gray and neon color theme for a futuristic, user-friendly shopping experience.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=flat-square&logo=tailwind-css)
+
+## ✨ Features
+
+- 🎯 **Modern UI/UX** - Sleek design with gray and neon (cyan, pink, purple, green) color scheme
+- 🛒 **Shopping Cart** - Full cart functionality with add, remove, and quantity updates
+- � **Stripe Payments** - Secure checkout with credit card processing
+- �📱 **Responsive Design** - Mobile-first approach, works perfectly on all devices
+- 🚀 **Fast Performance** - Built with Next.js 15 App Router for optimal speed
+- 🎨 **Product Showcase** - Beautiful product cards with hover effects and animations
+- � **Cart Management** - Real-time cart updates with item count badges
+- 🔍 **Product Details** - Detailed product pages with images and specifications
+- 📦 **Sample Products** - Pre-loaded with 8 example 3D printed products
+- ✉️ **Order Confirmation** - Beautiful success pages after checkout
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ installed
+- npm, yarn, pnpm, or bun package manager
+
+### Installation
+
+1. **Clone or navigate to the project directory**
+
+```bash
+cd 3dprinting
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Run the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. **Set up Stripe payments** (Optional but recommended)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+See [STRIPE_SETUP.md](./STRIPE_SETUP.md) for detailed instructions on configuring payments.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Quick setup:
+- Get your Stripe API keys from [dashboard.stripe.com](https://dashboard.stripe.com)
+- Add them to `.env.local` file
+- Restart the server
 
-## Learn More
+5. **Open your browser**
 
-To learn more about Next.js, take a look at the following resources:
+Visit [http://localhost:3000](http://localhost:3000) to see your site!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/                      # Next.js App Router pages
+│   ├── about/               # About page
+│   ├── cart/                # Shopping cart page
+│   ├── contact/             # Contact page
+│   ├── products/            # Products listing & detail pages
+│   │   └── [id]/           # Dynamic product detail page
+│   ├── layout.tsx          # Root layout with Header/Footer
+│   ├── page.tsx            # Homepage
+│   └── globals.css         # Global styles with neon theme
+├── components/              # Reusable React components
+│   ├── Header.tsx          # Navigation header with cart
+│   ├── Footer.tsx          # Site footer
+│   └── ProductCard.tsx     # Product display card
+├── context/                 # React Context providers
+│   └── CartContext.tsx     # Shopping cart state management
+└── lib/                     # Utilities and data
+    └── products.ts         # Product data and types
+```
 
-## Deploy on Vercel
+## 🎨 Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Changing Colors
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Edit the color scheme in `src/app/globals.css`:
+
+```css
+:root {
+  --neon-cyan: #00ffff;      /* Change cyan color */
+  --neon-pink: #ff00ff;      /* Change pink color */
+  --neon-green: #00ff00;     /* Change green color */
+  --neon-purple: #b000ff;    /* Change purple color */
+}
+```
+
+### Adding Products
+
+Edit `src/lib/products.ts` to add your own products:
+
+```typescript
+{
+  id: '9',
+  name: 'Your Product Name',
+  price: 29.99,
+  description: 'Product description here',
+  image: 'https://your-image-url.com/image.jpg',
+  category: 'Your Category',
+  stock: 15,
+}
+```
+
+### Replacing Product Images
+
+Replace the Unsplash placeholder URLs in `products.ts` with your own product images. You can:
+- Upload images to `/public` folder and use `/image-name.jpg`
+- Use your own image hosting service
+- Keep using Unsplash URLs for testing
+
+## 🛠️ Built With
+
+- **[Next.js 15](https://nextjs.org/)** - React framework with App Router
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Stripe](https://stripe.com/)** - Secure payment processing
+- **[Lucide React](https://lucide.dev/)** - Beautiful icon library
+- **[React Context API](https://react.dev/reference/react/createContext)** - State management
+
+## 📦 Available Scripts
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run start    # Start production server
+npm run lint     # Run ESLint
+```
+
+## 🌐 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Visit [vercel.com](https://vercel.com)
+3. Import your repository
+4. Click "Deploy"
+
+That's it! Vercel automatically detects Next.js and configures everything.
+
+### Deploy to Other Platforms
+
+Build the project:
+```bash
+npm run build
+```
+
+Then deploy the `.next` folder to your hosting platform of choice.
+
+## 💡 Future Enhancements
+
+- [x] Add Stripe payment integration ✅
+- [ ] Implement user authentication
+- [ ] Add product search and filtering
+- [ ] Create admin dashboard for product management
+- [ ] Add product reviews and ratings
+- [ ] Implement wishlist functionality
+- [ ] Add email notifications for order updates
+- [ ] Set up actual image hosting for products
+- [ ] Add inventory management
+- [ ] Implement discount codes and promotions
+
+## 📄 License
+
+This project is open source and available for personal and commercial use.
+
+## 🤝 Support
+
+Need help? Have questions? Feel free to:
+- Open an issue on GitHub
+- Contact us through the website's contact form
+- Check the Next.js documentation
+
+---
+
+**Built with ❤️ for the 3D printing community**
