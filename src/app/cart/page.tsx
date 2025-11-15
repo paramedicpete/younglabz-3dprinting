@@ -42,7 +42,13 @@ export default function CartPage() {
         throw new Error('Stripe failed to load');
       }
       
-      await stripe.redirectToCheckout({ sessionId: data.sessionId });
+      // @ts-ignore - Stripe types issue with redirectToCheckout
+      const { error } = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+      
+      if (error) {
+        alert('Error: ' + error.message);
+        setIsProcessing(false);
+      }
     } catch (error: any) {
       console.error('Checkout error:', error);
       alert('An error occurred. Please try again.');
